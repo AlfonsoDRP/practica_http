@@ -1,0 +1,20 @@
+.contenedor_maestro{
+    background-color: coral;
+}
+.contenedor_info{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .titulo{
+        text-align: center;
+    }
+    .seccion{
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    .notas{
+        background-color: rgb(224, 224, 0);
+    }
+}

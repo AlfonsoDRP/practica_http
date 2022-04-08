@@ -1,0 +1,24 @@
+.contenedor_supremo{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+}
+.buscador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor_clientes{
+    height: 100%;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 15px;
+    gap: 0.5rem;
+    background-color: burlywood;
+}
+.tarjeta_cliente{
+    height: 50px;
+    width: 100%;
+    background-color: white;
+}
