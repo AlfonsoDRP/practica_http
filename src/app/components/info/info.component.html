@@ -11,7 +11,7 @@
             <td>comercial</td>
             <td>email</td>
           </tr>
-          <tr *ngFor="let item of prueba">
+          <tr *ngFor="let item of prueba" class="entradas">
             <td>{{ item }}</td>
             <td>{{ item }}</td>
             <td>{{ item }}</td>
@@ -22,6 +22,9 @@
           </tr>
         </tbody>
       </table>
+      <div>
+        {{clientes[0]|json}}
+      </div>
   </div>
 
   <div class="contenedor_info">
@@ -46,7 +49,7 @@
       <input class="form-control" type="text" placeholder="Razon_social" />
       <input class="form-control" type="text" placeholder="Cod_postal" />
     </div>
-    <div class="seccion">
+    <div class="seccion-notas">
       <textarea class="form-control notas" placeholder="Notas..."></textarea>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
   selector: 'app-info',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
-  constructor() { }
-  prueba = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+  prueba:any = [];
+  clientes: any[] = [];
+
+  constructor(private clienteSrv:ClienteService){
+    clienteSrv.getCliente({}).subscribe(
+      (data)=>{console.log(data); this.clientes = data.data;},
+      (error) => {alert("Los datos no han podido cargarse");}
+    )
+  }
 
   ngOnInit(): void {
   }

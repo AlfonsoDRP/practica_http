@@ -1,24 +1,33 @@
 .contenedor_supremo{
     height: 100%;
-    display: grid;
-    grid-template-rows: 40px 1fr;
+    background-color: rgb(235, 235, 235);
+    padding: 15px;
 }
 .buscador{
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.contenedor_clientes{
-    height: 100%;
-    display: flex;
-    overflow-y: auto;
     flex-direction: column;
-    padding: 15px;
+}
+.contenedor_buscadores{
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
-    background-color: burlywood;
+    overflow-y: auto;
+    padding: 15px;
 }
 .tarjeta_cliente{
-    height: 50px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100px;
     width: 100%;
-    background-color: white;
+    .cliente_nombre{
+        height: 100%;
+        font-size: 2rem;
+    }
+    .mini_info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }

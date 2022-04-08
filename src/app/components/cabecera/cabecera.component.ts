@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cabecera',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cabecera.component.scss']
 })
 export class CabeceraComponent implements OnInit {
-
+  selected ="";
   constructor() { }
 
   ngOnInit(): void {
