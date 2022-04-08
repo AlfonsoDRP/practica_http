@@ -1,4 +1,29 @@
 <div class="contenedor_maestro">
+  <div class="contenedor_tabla">
+      <table class="tabla">
+        <tbody>
+          <tr class="cabecera_tabla">
+            <td>Id_cliente</td>
+            <td>numero</td>
+            <td>nombre</td>
+            <td>direccion</td>
+            <td>telefono</td>
+            <td>comercial</td>
+            <td>email</td>
+          </tr>
+          <tr *ngFor="let item of prueba">
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
   <div class="contenedor_info">
     <div class="titulo">
       <h5>DATOS DEL CLIENTE</h5>
