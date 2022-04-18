@@ -12,25 +12,22 @@ export class InfoComponent implements OnInit {
   clientes: any[] = [];
   
 
-  constructor(private clienteSrv:ClienteService){
+  constructor(public clienteSrv:ClienteService){
     clienteSrv.getCliente({}).subscribe(
-      (data)=>{console.log(data); this.clientes = data.data;},
+      (data)=>{console.log(data); this.clientes = data.data;this.ordenaclientes();clienteSrv.set_clientes(this.clientes);},
       (error) => {alert("Los datos no han podido cargarse");}
     )
+    
+    
   }
+  
   ordenaclientes(){
-    this.clientes.sort(function (a, b) {
-      if (a.nombre > b.nombre) {
-        return 1;
-      }
-      if (a.nombre < b.nombre) {
-        return -1;
-      }
-      return 0;
+    this.clientes.sort(function(a, b) {
+      return a.idcliente - b.idcliente;
     });
   }
   set_cliente_sele(index:any){
-    this.cliente_sele=this.clientes[index];
+    this.cliente_sele=this.clienteSrv.clientes_a_mostrar[index];
   console.log(this.cliente_sele);
   }
   ngOnInit(): void {

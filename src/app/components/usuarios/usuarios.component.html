@@ -1,20 +1,30 @@
 <div class="contenedor_supremo">
   <div class="contenedor_buscadores">
     <div class="buscador">
-      <label for="">Nº Cliente:</label>
-      <input type="text" class="form-control">
+      <label for="">Codigo:</label>
+      <input type="text" class="form-control" [(ngModel)]="filtro.codigo">
     </div>
     <div class="buscador">
       <label for="">Alias:</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" [(ngModel)]="filtro.alias">
     </div>
     <div class="buscador">
       <label for="">Provincia:</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" [(ngModel)]="filtro.provincia">
     </div>
     <div class="buscador">
-      <label for="">Codigo postal:</label>
-      <input type="text" class="form-control">
+      <label for="">documento:</label>
+      <input type="text" class="form-control" [(ngModel)]="filtro.documento">
+    </div>
+    <div class="buscador">
+      <label for="">activo:</label>
+      <input type="text" class="form-control" [(ngModel)]="filtro.activo">
+    </div>
+    <div>
+      <button class="btn-primary" (click)="clientesrv.set_filtro(filtro);clientesrv.filtrar()">Buscar...</button>
+      <p>
+        {{filtro|json}}
+      </p>
     </div>
   </div>
 </div>

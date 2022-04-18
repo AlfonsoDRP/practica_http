@@ -4,7 +4,7 @@
   overflow-y: hidden;
   display: grid;
   gap: 0.5rem;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 .contenedor_tabla {
@@ -63,7 +63,7 @@
     background-color: rgb(224, 224, 0);
     max-height: 150px;
     min-height: 150px;
-    min-width: 150px;
-    max-width: 300px;
+    min-width: 100%;
+    max-width: 100%;
   }
 }
