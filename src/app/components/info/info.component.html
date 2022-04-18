@@ -11,20 +11,17 @@
             <td>comercial</td>
             <td>email</td>
           </tr>
-          <tr *ngFor="let item of prueba" class="entradas">
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
-            <td>{{ item }}</td>
+          <tr *ngFor="let item of clientes,let i = index" class="entradas" (click)="set_cliente_sele(i)">
+            <td class="idcliente">{{ item.idcliente }}</td>
+            <td class="numero">{{ item.numero }}</td>
+            <td class="nombre">{{ item.nombre }}</td>
+            <td class="direccion">{{ item.direccion }}</td>
+            <td class="telefono">{{ item.telefono }}</td>
+            <td class="comercial">{{ item.comercial }}</td>
+            <td class="email">{{ item.email }}</td>
           </tr>
         </tbody>
       </table>
-      <div>
-        {{clientes[0]|json}}
-      </div>
   </div>
 
   <div class="contenedor_info">
@@ -32,25 +29,25 @@
       <h5>DATOS DEL CLIENTE</h5>
     </div>
     <div class="seccion">
-      <input class="form-control" type="text" placeholder="Id_cliente" />
-      <input class="form-control" type="text" placeholder="Numero_cliente" />
-      <input class="form-control" type="text" placeholder="Alias" />
+      <input class="form-control" type="text" placeholder="{{cliente_sele.idcliente}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.numero}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.alias}}" readonly/>
     </div>
     <div class="seccion">
-      <input class="form-control" type="text" placeholder="Provincia" />
-      <input class="form-control" type="text" placeholder="Poblacion" />
-      <input class="form-control" type="text" placeholder="Direccion" />
+      <input class="form-control" type="text" placeholder="{{cliente_sele.provincia}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.poblacion}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.direccion}}" readonly/>
     </div>
     <div class="seccion">
-      <input class="form-control" type="text" placeholder="Comercial" />
-      <input class="form-control" type="text" placeholder="Documento" />
+      <input class="form-control" type="text" placeholder="{{cliente_sele.comercial}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.documento}}" readonly/>
     </div>
     <div class="seccion">
-      <input class="form-control" type="text" placeholder="Razon_social" />
-      <input class="form-control" type="text" placeholder="Cod_postal" />
+      <input class="form-control" type="text" placeholder="{{cliente_sele.razon_social}}" readonly/>
+      <input class="form-control" type="text" placeholder="{{cliente_sele.cp}}" readonly />
     </div>
     <div class="seccion-notas">
-      <textarea class="form-control notas" placeholder="Notas..."></textarea>
+      <textarea class="form-control notas" placeholder="{{cliente_sele.notas}}"></textarea>
     </div>
   </div>
 </div>

@@ -8,8 +8,9 @@ import { ClienteService } from 'src/app/services/cliente.service';
 })
 export class InfoComponent implements OnInit {
 
-  prueba:any = [];
+  cliente_sele:any = [];
   clientes: any[] = [];
+  
 
   constructor(private clienteSrv:ClienteService){
     clienteSrv.getCliente({}).subscribe(
@@ -17,7 +18,21 @@ export class InfoComponent implements OnInit {
       (error) => {alert("Los datos no han podido cargarse");}
     )
   }
-
+  ordenaclientes(){
+    this.clientes.sort(function (a, b) {
+      if (a.nombre > b.nombre) {
+        return 1;
+      }
+      if (a.nombre < b.nombre) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+  set_cliente_sele(index:any){
+    this.cliente_sele=this.clientes[index];
+  console.log(this.cliente_sele);
+  }
   ngOnInit(): void {
   }
 

@@ -1,0 +1,24 @@
+.contenedor_maestro{
+    height: 100vh;
+    overflow-y: hidden;
+    background-image: url(../assets/fondo.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+.contenedor_central{
+    overflow-y: hidden;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.contenedor_usuarios{
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.contenedor_info{
+    height: 100%;
+    overflow-y: hidden;
+}
