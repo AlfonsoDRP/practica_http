@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class InfoComponent implements OnInit {
 
   cliente_sele:any = [];
   clientes: any[] = [];
-  
+  Startitem=0;
+  Enditem=20;
+  rotate = true;
+  currentpage=1;
 
   constructor(public clienteSrv:ClienteService){
     clienteSrv.getCliente({}).subscribe(
@@ -20,7 +24,12 @@ export class InfoComponent implements OnInit {
     
     
   }
-  
+
+  pageChanged(event: PageChangedEvent): void {
+    this.Startitem = (event.page - 1) * event.itemsPerPage;
+    this.Enditem = event.page * event.itemsPerPage;
+    // this.array_filtrado=this.datos_clientes_tabla.slice(this.startItem, this.endItem);
+  }
   ordenaclientes(){
     this.clientes.sort(function(a, b) {
       return a.idcliente - b.idcliente;

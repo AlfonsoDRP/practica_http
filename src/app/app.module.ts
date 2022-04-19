@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ClienteService } from './services/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     TypeaheadModule.forRoot(),
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    PaginationModule.forRoot()
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

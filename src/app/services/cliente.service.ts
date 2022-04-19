@@ -6,19 +6,24 @@ import { Observable } from 'rxjs';
 export class ClienteService {
   private url: string = 'https://www.azurglobal.es/apiPracticas/clientes/';
   private cabecera: any = {};
+  bandera:boolean = true;
   clientes: any = {};
-  clientes_a_mostrar:any[]=[];
+  clientes_a_mostrar: any[] = [];
   filtro = {
-    codigo: '',
     alias: '',
+    activo: '',
     provincia: '',
     documento: '',
-    activo: '',
+    codigo: '',
   };
   constructor(private http: HttpClient) {
     let token =
-      'a142cd38ada80231e58d27cc25e33a7e0498632d3caa3714a03d31303f8cf5c42a4942c544416695f6f1896aa2e5c889';
+      '42215e7812293981e83c6262bea85cda4f3aa54ded272301d95e92059e33b99199c67cd2823a31aa6f91d5e042aa5638';
     this.cabecera = { 'X-Auth': token };
+  }
+  cambiarbandera(){
+    this.bandera = !this.bandera;
+    console.log(this.bandera);
   }
   set_filtro(x: any) {
     this.filtro = x;
@@ -34,7 +39,7 @@ export class ClienteService {
     };
     return this.http.get<any>(
       'https://www.azurglobal.es/apiPracticas/clientes/',
-      { headers: this.cabecera, params: filtros }
+      { headers: this.cabecera, params: parametros }
     );
   }
   set_clientes(clientes: any) {
@@ -42,27 +47,14 @@ export class ClienteService {
     this.clientes_a_mostrar = this.clientes;
     console.log('clientes en srv: ', this.clientes);
   }
+  ordenaclientes(){
+    this.clientes_a_mostrar.sort(function(a, b) {
+      return a.idcliente - b.idcliente;
+    });
+  }
   filtrar() {
-    console.log("he entrado");
-    console.log(this.clientes[0].idcliente)
-    this.clientes_a_mostrar = [];
-    for (let i = 0; i < this.clientes.length; i++) {
-      if (this.filtro.codigo == this.clientes[i].idcliente) {
-        console.log("Soy igual")
-        if (this.filtro.alias == this.clientes[i].nombre) {
-          if (this.filtro.provincia == this.clientes[i].provincia) {
-            if (this.filtro.documento == this.clientes[i].documento) {
-              if (this.filtro.activo == this.clientes[i].activo) {
-                this.clientes_a_mostrar.push(this.clientes[i]);
-                if (this.clientes_a_mostrar.length==0){
-                  this.clientes_a_mostrar = this.clientes
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    console.log(this.clientes_a_mostrar);
+    this.getCliente(this.filtro).subscribe((data) => {
+      this.clientes_a_mostrar = data.data;this.ordenaclientes()
+    });
   }
 }

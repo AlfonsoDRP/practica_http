@@ -7,14 +7,13 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./usuarios.component.scss'],
 })
 export class UsuariosComponent implements OnInit {
-  constructor(public clientesrv: ClienteService) {
-  }
+  constructor(public clientesrv: ClienteService) {}
   filtro = {
-    codigo: '',
     alias: '',
+    activo: '',
     provincia: '',
     documento: '',
-    activo:''
+    codigo: '',
   };
   ngOnInit(): void {}
 }
