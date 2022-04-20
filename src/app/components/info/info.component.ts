@@ -9,16 +9,16 @@ import { ClienteService } from 'src/app/services/cliente.service';
 })
 export class InfoComponent implements OnInit {
 
-  cliente_sele:any = [];
   clientes: any[] = [];
   Startitem=0;
   Enditem=20;
   rotate = true;
   currentpage=1;
 
+  
   constructor(public clienteSrv:ClienteService){
     clienteSrv.getCliente({}).subscribe(
-      (data)=>{console.log(data); this.clientes = data.data;this.ordenaclientes();clienteSrv.set_clientes(this.clientes);},
+      (data)=>{console.log(data); this.clientes = data.data;this.ordenaclientes();clienteSrv.set_clientes(this.clientes);this.clienteSrv.cliente_sele = this.clienteSrv.clientes_a_mostrar[0];},
       (error) => {alert("Los datos no han podido cargarse");}
     )
     
@@ -30,15 +30,18 @@ export class InfoComponent implements OnInit {
     this.Enditem = event.page * event.itemsPerPage;
     // this.array_filtrado=this.datos_clientes_tabla.slice(this.startItem, this.endItem);
   }
+
   ordenaclientes(){
     this.clientes.sort(function(a, b) {
       return a.idcliente - b.idcliente;
     });
   }
   set_cliente_sele(index:any){
-    this.cliente_sele=this.clienteSrv.clientes_a_mostrar[index];
-  console.log(this.cliente_sele);
+    this.clienteSrv.cliente_sele=index;
+    this.clienteSrv.cliente_sele_muestra =this.clienteSrv.cliente_sele;
+    console.log(index);
   }
+
   ngOnInit(): void {
   }
 

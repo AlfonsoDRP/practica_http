@@ -1,261 +1,283 @@
 <div class="contenedor_maestro">
   <div class="contenedor_tabla">
     <div class="contenedor_para_flex_tabla">
-    <table class="tabla">
-      <tbody>
-        <tr class="cabecera_tabla">
-          <td>Id_cliente</td>
-          <td>numero</td>
-          <td>nombre</td>
-          <td>direccion</td>
-          <td>telefono</td>
-          <td>comercial</td>
-          <td>email</td>
-        </tr>
-        <tr
-          *ngFor="let item of clienteSrv.clientes_a_mostrar|slice:Startitem:Enditem ; let i = index"
-          class="entradas"
-          (click)="set_cliente_sele(i)"
-        >
-          <td class="idcliente">{{ item.idcliente }}</td>
-          <td class="numero">{{ item.numero }}</td>
-          <td class="nombre">{{ item.nombre }}</td>
-          <td class="direccion">{{ item.direccion }}</td>
-          <td class="telefono">{{ item.telefono }}</td>
-          <td class="comercial">{{ item.comercial }}</td>
-          <td class="email">{{ item.email }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <table class="tabla">
+        <tbody>
+          <tr class="cabecera_tabla">
+            <td>Id_cliente</td>
+            <td>numero</td>
+            <td>nombre</td>
+            <td>direccion</td>
+            <td>telefono</td>
+            <td>comercial</td>
+            <td>email</td>
+          </tr>
+          <tr
+            *ngFor="
+              let item of clienteSrv.clientes_a_mostrar
+                | slice: Startitem:Enditem
+            "
+            class="entradas"
+            (click)="set_cliente_sele(item)"
+          >
+            <td class="idcliente">{{ item.idcliente }}</td>
+            <td class="numero">{{ item.numero }}</td>
+            <td class="nombre">{{ item.nombre }}</td>
+            <td class="direccion">{{ item.direccion }}</td>
+            <td class="telefono">{{ item.telefono }}</td>
+            <td class="comercial">{{ item.comercial }}</td>
+            <td class="email">{{ item.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="paginacion">
-    <pagination
-      [boundaryLinks]="true"
-      [totalItems]="clienteSrv.clientes_a_mostrar.length"
-      (pageChanged)="pageChanged($event)"
-      [itemsPerPage]="20"
-      [rotate]="rotate"
-      [maxSize]="8"
-      previousText="&lsaquo;"
-      nextText="&rsaquo;"
-      firstText="&laquo;"
-      lastText="&raquo;"
-    >
-    </pagination>
-  </div>
+      <pagination
+        [boundaryLinks]="true"
+        [totalItems]="clienteSrv.clientes_a_mostrar.length"
+        (pageChanged)="pageChanged($event)"
+        [itemsPerPage]="20"
+        [rotate]="rotate"
+        [maxSize]="8"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+      >
+      </pagination>
+    </div>
   </div>
 
   <div class="contenedor_info">
-    <div class="titulo">
-      <h5>DATOS DEL CLIENTE</h5>
+    <div class="contenedor-datos">
+      <div class="titulo">
+        <h5>DATOS DEL CLIENTE</h5>
+      </div>
+
+      <div class="seccion">
+        <div class="etiqueta id_cliente">
+          <label for="">Id_cliente:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.idcliente }}"
+            placeholder="Sin id_cliente"
+          />
+        </div>
+        <div class="etiqueta numero">
+          <label for="">Numero:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.numero }}"
+            placeholder="Sin numero"
+          />
+        </div>
+        <div class="etiqueta alias">
+          <label for="">Alias:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.alias }}"
+            placeholder="Sin alias"
+          />
+        </div>
+      </div>
+
+      <div class="seccion">
+        <div class="etiqueta provincia">
+          <label for="">Provincia:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.provincia }}"
+            placeholder="Sin provincia"
+          />
+        </div>
+        <div class="etiqueta">
+          <label for="">Poblacion:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control poblacion"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.poblacion }}"
+            placeholder="Sin poblacion"
+          />
+        </div>
+      </div>
+
+      <div class="seccion">
+        <div class="etiqueta direccion">
+          <label for="">Direccion:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.direccion }}"
+            placeholder="Sin direccion"
+          />
+        </div>
+      </div>
+
+      <div class="seccion">
+        <div class="etiqueta">
+          <label for="">Comercial:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control comercial"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.comercial }}"
+            placeholder="Sin comercial"
+          />
+        </div>
+        <div class="etiqueta">
+          <label for="">Documento:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control documento"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.documento }}"
+            placeholder="Sin documento"
+          />
+        </div>
+      </div>
+
+      <div class="seccion"></div>
+
+      <div class="seccion">
+        <div class="etiqueta">
+          <label for="">Razon social:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control razon_social"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.razon_social }}"
+            placeholder="Sin direccion"
+          />
+        </div>
+      </div>
+
+      <div class="seccion">
+        <div class="etiqueta telefono">
+          <label for="">Telefono:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.telefono }}"
+            placeholder="Sin razon social"
+          />
+        </div>
+        <div class="etiqueta">
+          <label for="">E-mail:</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control email"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.email }}"
+            placeholder="Sin codigo postal"
+          />
+        </div>
+      </div>
+      <div class="seccion">
+        <div class="etiqueta">
+          <label for="">Activo</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="activo"
+            type="checkbox"
+            value="{{ clienteSrv.cliente_sele.activo }}"
+            placeholder="Sin razon social"
+          />
+        </div>
+      </div>
+
+      <div class="seccion"></div>
+
+      <div class="seccion">
+        <div class="etiqueta">
+          <label for="">Anotaciones:</label>
+          <textarea
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control notas"
+            value="{{ clienteSrv.cliente_sele.notas }}"
+            placeholder="Sin anotacion"
+          ></textarea>
+        </div>
+      </div>
     </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.idcliente }}"
-        placeholder="Sin id_cliente"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.numero }}"
-        placeholder="Sin numero"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.alias }}"
-        placeholder="Sin alias"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.provincia }}"
-        placeholder="Sin provincia"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.poblacion }}"
-        placeholder="Sin poblacion"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.razon_social }}"
-        placeholder="Sin direccion"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.comercial }}"
-        placeholder="Sin comercial"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.documento }}"
-        placeholder="Sin documento"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.razon_social }}"
-        placeholder="Sin razon social"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.cp }}"
-        placeholder="Sin codigo postal"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.activo }}"
-        placeholder="Sin razon social"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.nombre }}"
-        placeholder="Sin codigo postal"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.telefono }}"
-        placeholder="Sin razon social"
-      />
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.email }}"
-        placeholder="Sin codigo postal"
-      />
-    </div>
-    <div class="seccion">
-      <input
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control"
-        type="text"
-        value="{{ cliente_sele.direccion }}"
-        placeholder="Sin razon social"
-      />
-    </div>
-    <div class="seccion">
-      <textarea
-        [ngClass]="{
-          mostrar: clienteSrv.bandera,
-          modificar: !clienteSrv.bandera
-        }"
-        [disabled]="clienteSrv.bandera"
-        class="form-control notas"
-        value="{{ cliente_sele.notas }}"
-        placeholder="Sin anotacion"
-      ></textarea>
-    </div>
-    <div class="botonera">
-      <button
-        class="btn btn-outline-success boton"
-        (click)="clienteSrv.cambiarbandera()"
-      >
-        Crear...👤
-      </button>
-      <button
-        class="btn btn-outline-info boton"
-        (click)="clienteSrv.cambiarbandera()"
-      >
-        Modificar...🖌
-      </button>
-      <button class="btn btn-outline-danger boton">Borrar...🗑</button>
+    <div class="contenedor-botonera">
+      <div class="botonera">
+        <button
+          class="btn btn-outline-success boton"
+          (click)="clienteSrv.cambiarbandera()"
+        >
+          Crear...👤
+        </button>
+        <button
+          class="btn btn-outline-info boton"
+          (click)="clienteSrv.cambiarbandera()"
+        >
+          Modificar...🖌
+        </button>
+        <button class="btn btn-outline-danger boton">Borrar...🗑</button>
+      </div>
     </div>
   </div>
 </div>

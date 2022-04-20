@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as CryptoJS from 'crypto-js'
+import { cliente } from '../models/cliente.model';
 
 @Injectable()
 export class ClienteService {
@@ -9,6 +11,9 @@ export class ClienteService {
   bandera:boolean = true;
   clientes: any = {};
   clientes_a_mostrar: any[] = [];
+  cliente_sele: any = [];
+  cliente_sele_muestra:cliente = new cliente({});
+
   filtro = {
     alias: '',
     activo: '',
@@ -16,19 +21,31 @@ export class ClienteService {
     documento: '',
     codigo: '',
   };
+
+  fecha:Date = new Date(Date.now());
+  nombre = 'ALFONSO';
+
   constructor(private http: HttpClient) {
-    let token =
-      '42215e7812293981e83c6262bea85cda4f3aa54ded272301d95e92059e33b99199c67cd2823a31aa6f91d5e042aa5638';
+
+    let dia = this.fecha.getDate() < 9 ? '0'+this.fecha.getDate() : this.fecha.getDate();
+    let mes = this.fecha.getMonth() < 9 ? '0'+(this.fecha.getMonth()+1) : this.fecha.getMonth()+1;
+    let año = this.fecha.getFullYear();
+    let cadenaCompleta = this.nombre+año+mes+dia
+    let token = CryptoJS.SHA384(cadenaCompleta).toString();
     this.cabecera = { 'X-Auth': token };
+
   }
+
   cambiarbandera(){
     this.bandera = !this.bandera;
     console.log(this.bandera);
   }
+
   set_filtro(x: any) {
     this.filtro = x;
     console.log(this.filtro);
   }
+
   getCliente(parametros: any): Observable<any> {
     const filtros = {
       alias: '',
@@ -37,24 +54,29 @@ export class ClienteService {
       documento: '',
       codigo: '',
     };
+
     return this.http.get<any>(
       'https://www.azurglobal.es/apiPracticas/clientes/',
       { headers: this.cabecera, params: parametros }
     );
   }
+
   set_clientes(clientes: any) {
     this.clientes = clientes;
     this.clientes_a_mostrar = this.clientes;
     console.log('clientes en srv: ', this.clientes);
   }
+
   ordenaclientes(){
     this.clientes_a_mostrar.sort(function(a, b) {
       return a.idcliente - b.idcliente;
     });
   }
+
   filtrar() {
     this.getCliente(this.filtro).subscribe((data) => {
-      this.clientes_a_mostrar = data.data;this.ordenaclientes()
+      this.clientes_a_mostrar = data.data;this.ordenaclientes();
     });
+    
   }
 }

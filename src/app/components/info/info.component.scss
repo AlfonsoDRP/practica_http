@@ -26,6 +26,7 @@
       width: 100%;
   }
 }
+
 .contenedor_tabla {
   height: 100%;
   display: flex;
@@ -72,10 +73,31 @@
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  display: flex;
+  overflow-y: hidden;
+  display: grid;
   height: 100%;
-  flex-direction: column;
+  grid-template-rows:4fr 1fr ;
   gap: 0.5rem;
+  .contenedor-datos{
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #cccccc;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #858585;
+      border-radius: 5px;
+    }
+  }
+  .contenedor-botonera{
+    height: 100%;
+    overflow-y: hidden;
+  }
   .titulo {
     text-align: center;
   }
@@ -83,6 +105,33 @@
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    width: 100%;
+  }
+  .etiqueta{
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    
+    
+  }
+  .id_cliente{
+    width: 25%;
+  }
+  .numero{
+    width: 30%;
+  }
+  .alias{
+    width: 45%;
+  }
+  .provincia{
+    width: 32%;
+  }
+  .cod_postal{
+    width: 40%;
+  }
+  .telefono{
+    width: 42%;
   }
   .seccion-notas {
       display: flex;
@@ -91,8 +140,8 @@
   }
   .notas {
     background-color: rgb(224, 224, 0);
-    max-height: 150px;
-    min-height: 150px;
+    max-height: 100px;
+    min-height: 100px;
     min-width: 100%;
     max-width: 100%;
   }
