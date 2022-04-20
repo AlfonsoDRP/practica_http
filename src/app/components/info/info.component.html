@@ -228,20 +228,30 @@
         </div>
       </div>
       <div class="seccion">
-        <div class="etiqueta">
+        <div class="etiqueta" *ngIf="clienteSrv.cliente_sele.activo==0 else distinto">
           <label for="">Activo</label>
           <input
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
             }"
-            [disabled]="clienteSrv.bandera"
             class="activo"
             type="checkbox"
             value="{{ clienteSrv.cliente_sele.activo }}"
             placeholder="Sin razon social"
           />
         </div>
+        <ng-template #distinto> <div class="etiqueta">
+          <label for="">Activo</label>
+          <input
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            class="activo"
+            type="checkbox"
+            checked
+          /></div></ng-template>
       </div>
 
       <div class="seccion"></div>

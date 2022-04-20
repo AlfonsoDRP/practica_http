@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js'
-import { cliente } from '../models/cliente.model';
 
 @Injectable()
 export class ClienteService {
@@ -12,7 +11,6 @@ export class ClienteService {
   clientes: any = {};
   clientes_a_mostrar: any[] = [];
   cliente_sele: any = [];
-  cliente_sele_muestra:cliente = new cliente({});
 
   filtro = {
     alias: '',

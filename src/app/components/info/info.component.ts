@@ -38,7 +38,6 @@ export class InfoComponent implements OnInit {
   }
   set_cliente_sele(index:any){
     this.clienteSrv.cliente_sele=index;
-    this.clienteSrv.cliente_sele_muestra =this.clienteSrv.cliente_sele;
     console.log(index);
   }
 

@@ -2,27 +2,27 @@
   <div class="contenedor_buscadores">
     <div class="buscador">
       <label for="">Codigo:</label>
-      <input type="text" class="form-control" [(ngModel)]="filtro.codigo">
+      <input type="text" #limpiar1 class="form-control" [(ngModel)]="filtro.codigo">
     </div>
     <div class="buscador">
       <label for="">Alias:</label>
-      <input type="text" class="form-control" [(ngModel)]="filtro.alias">
+      <input type="text" #limpiar2 class="form-control" [(ngModel)]="filtro.alias">
     </div>
     <div class="buscador">
       <label for="">Provincia:</label>
-      <input type="text" class="form-control" [(ngModel)]="filtro.provincia">
+      <input type="text" #limpiar3 class="form-control" [(ngModel)]="filtro.provincia">
     </div>
     <div class="buscador">
-      <label for="">documento:</label>
-      <input type="text" class="form-control" [(ngModel)]="filtro.documento">
+      <label for="">Documento:</label>
+      <input type="text" #limpiar4 class="form-control" [(ngModel)]="filtro.documento">
     </div>
     <div class="buscador">
-      <label for="">activo:</label>
-      <input type="text" class="form-control" [(ngModel)]="filtro.activo">
+      <label for="">Activo:</label>
+      <input type="text" #limpiar5 class="form-control" [(ngModel)]="filtro.activo">
     </div>
     <div class="botonera">
       <button class="btn btn-outline-primary boton" (click)="clientesrv.set_filtro(filtro);clientesrv.filtrar()">Buscar...🔍</button>
-      
+      <button class="btn btn-outline-success boton" (click)="limpiar1.value='';limpiar2.value='';limpiar3.value='';limpiar4.value='';limpiar5.value='';">Limpiar...🧹</button>
     </div>
   </div>
 </div>
