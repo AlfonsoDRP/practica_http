@@ -295,19 +295,19 @@
       <div class="botonera">
         <button
           class="btn btn-outline-success boton"
-          (click)="clienteSrv.cambiarbandera()"
+          (click)="crear();clienteSrv.cambiarbandera()"
         >
           Crear...👤
         </button>
         <button
           class="btn btn-outline-info boton"
-          (click)="clienteSrv.cambiarbandera()"
+          (click)="clienteSrv.cambiarbandera();modificar();"
         >
           Modificar...🖌
         </button>
         <button
           class="btn btn-outline-danger boton"
-          (click)="clienteSrv.limpiar_datos()"
+          (click)="borrar()"
         >
           Borrar...🗑
         </button>

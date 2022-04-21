@@ -65,18 +65,22 @@ export class ClienteService {
   }
 
   getCliente(parametros: any): Observable<any> {
-    const filtros = {
-      alias: '',
-      activo: '',
-      provincia: '',
-      documento: '',
-      codigo: '',
-    };
-
     return this.http.get<any>(
       'https://www.azurglobal.es/apiPracticas/clientes/',
       { headers: this.cabecera, params: parametros }
     );
+  }
+  
+  deleteCliente(id1: any): Observable<any>{
+    const parametros = {
+      id : id1
+    }
+    
+    return this.http.delete<any>(
+      'https://www.azurglobal.es/apiPracticas/clientes/',
+      { headers: this.cabecera, params: parametros}
+    );
+
   }
 
   set_clientes(clientes: any) {

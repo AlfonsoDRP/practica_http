@@ -5,24 +5,28 @@ import { ClienteService } from 'src/app/services/cliente.service';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss']
+  styleUrls: ['./info.component.scss'],
 })
 export class InfoComponent implements OnInit {
-
   clientes: any[] = [];
-  Startitem=0;
-  Enditem=20;
+  Startitem = 0;
+  Enditem = 20;
   rotate = true;
-  currentpage=1;
+  currentpage = 1;
 
-  
-  constructor(public clienteSrv:ClienteService){
+  constructor(public clienteSrv: ClienteService) {
     clienteSrv.getCliente({}).subscribe(
-      (data)=>{console.log(data); this.clientes = data.data;this.ordenaclientes();clienteSrv.set_clientes(this.clientes);this.clienteSrv.cliente_sele = this.clienteSrv.clientes_a_mostrar[0];},
-      (error) => {alert("Los datos no han podido cargarse");}
-    )
-    
-    
+      (data) => {
+        console.log(data);
+        this.clientes = data.data;
+        this.ordenaclientes();
+        clienteSrv.set_clientes(this.clientes);
+        this.clienteSrv.cliente_sele = this.clienteSrv.clientes_a_mostrar[0];
+      },
+      (error) => {
+        alert('Los datos no han podido cargarse');
+      }
+    );
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -31,17 +35,30 @@ export class InfoComponent implements OnInit {
     // this.array_filtrado=this.datos_clientes_tabla.slice(this.startItem, this.endItem);
   }
 
-  ordenaclientes(){
-    this.clientes.sort(function(a, b) {
+  ordenaclientes() {
+    this.clientes.sort(function (a, b) {
       return a.idcliente - b.idcliente;
     });
   }
-  set_cliente_sele(index:any){
-    this.clienteSrv.cliente_sele=index;
+
+  set_cliente_sele(index: any) {
+    this.clienteSrv.cliente_sele = index;
     console.log(index);
   }
 
-  ngOnInit(): void {
+  crear() {
+    this.clienteSrv.clientes.push(this.clienteSrv.cliente_a_mod);
   }
 
+  modificar() {
+  }
+
+  borrar() {
+    let id = this.clienteSrv.cliente_sele.idcliente;
+    this.clienteSrv.deleteCliente(id).subscribe(
+      (data) => {console.log("delete succesfull",data)},
+      (error) => {console.log("error",error)});
+    this.clienteSrv.filtrar();
+  }
+  ngOnInit(): void {}
 }
