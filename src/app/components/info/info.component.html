@@ -36,7 +36,7 @@
         [boundaryLinks]="true"
         [totalItems]="clienteSrv.clientes_a_mostrar.length"
         (pageChanged)="pageChanged($event)"
-        [itemsPerPage]="20"
+        [itemsPerPage]="18"
         [rotate]="rotate"
         [maxSize]="5"
         previousText="&lsaquo;"
@@ -278,7 +278,7 @@
         <div class="etiqueta">
           <label for="">Anotaciones:</label>
           <textarea
-            [(ngModel)]="clienteSrv.cliente_a_mod.idcliente"
+            [(ngModel)]="clienteSrv.cliente_a_mod.notas"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -289,6 +289,15 @@
             placeholder="Sin anotacion"
           ></textarea>
         </div>
+        
+      </div>
+      <div class="etiqueta-limpiar">
+        <button
+        class="btn btn-outline-warning boton_limpiar"
+        (click)="resetSele()"
+      >
+      🧹
+      </button>
       </div>
     </div>
     <div class="contenedor-botonera">

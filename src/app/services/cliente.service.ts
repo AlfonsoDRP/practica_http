@@ -70,7 +70,7 @@ export class ClienteService {
       { headers: this.cabecera, params: parametros }
     );
   }
-  
+
   deleteCliente(id1: any): Observable<any>{
     const parametros = {
       id : id1
@@ -102,21 +102,6 @@ export class ClienteService {
       this.cliente_sele = this.clientes_a_mostrar[0];
     });
   }
-  limpiar_datos(){
-    this.cliente_a_mod = {
-      idcliente: '',
-      numero: '',
-      alias: '',
-      provincia: '',
-      poblacion: '',
-      direccion: '',
-      comercial: '',
-      documento: '',
-      razon_social: '',
-      telefono: '',
-      email: '',
-      activo: false,
-      notas: '',
-    };
-  }
+
+
 }

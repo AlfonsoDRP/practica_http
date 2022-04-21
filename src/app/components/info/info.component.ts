@@ -10,7 +10,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 export class InfoComponent implements OnInit {
   clientes: any[] = [];
   Startitem = 0;
-  Enditem = 20;
+  Enditem = 18;
   rotate = true;
   currentpage = 1;
 
@@ -45,7 +45,10 @@ export class InfoComponent implements OnInit {
     this.clienteSrv.cliente_sele = index;
     console.log(index);
   }
-
+  resetSele(){
+    this.clienteSrv.cliente_sele={};
+    this.clienteSrv.cambiarbandera();
+  }
   crear() {
     this.clienteSrv.clientes.push(this.clienteSrv.cliente_a_mod);
   }
