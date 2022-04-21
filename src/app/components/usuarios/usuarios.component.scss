@@ -15,6 +15,17 @@
     gap: 0.5rem;
     overflow-y: auto;
     padding: 15px;
+    &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #cccccc;
+        border-radius: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #858585;
+        border-radius: 5px;
+      }
 }
 .tarjeta_cliente{
     display: grid;
@@ -31,7 +42,6 @@
     }
 }
 .botonera{
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

@@ -2,27 +2,91 @@
   <div class="contenedor_buscadores">
     <div class="buscador">
       <label for="">Codigo:</label>
-      <input type="text" #limpiar1 class="form-control" [(ngModel)]="filtro.codigo">
+      <div class="input-group">
+        <input
+          type="text"
+          #codigo1
+          class="form-control"
+          [(ngModel)]="filtro.codigo"
+        />
+        <button
+          class="btn btn-outline-danger"
+          id="button-addon2"
+          (click)="codigo1.value = ''"
+        >
+        🧹
+        </button>
+      </div>
     </div>
     <div class="buscador">
       <label for="">Alias:</label>
-      <input type="text" #limpiar2 class="form-control" [(ngModel)]="filtro.alias">
+      <div class="input-group">
+        <input
+          type="text"
+          #alias1
+          class="form-control"
+          [(ngModel)]="filtro.alias"
+        />
+        <button
+          class="btn btn-outline-danger"
+          id="button-addon2"
+          (click)="alias1.value = ''"
+        >
+        🧹
+        </button>
+      </div>
     </div>
     <div class="buscador">
       <label for="">Provincia:</label>
-      <input type="text" #limpiar3 class="form-control" [(ngModel)]="filtro.provincia">
+      <div class="input-group">
+        <input
+          type="text"
+          #provincia1
+          class="form-control"
+          [(ngModel)]="filtro.provincia"
+        />
+        <button
+          class="btn btn-outline-danger"
+          id="button-addon2"
+          (click)="provincia1.value = ''"
+        >
+        🧹
+        </button>
+      </div>
     </div>
     <div class="buscador">
       <label for="">Documento:</label>
-      <input type="text" #limpiar4 class="form-control" [(ngModel)]="filtro.documento">
+      <div class="input-group">
+        <input
+          type="text"
+          #documento1
+          class="form-control"
+          [(ngModel)]="filtro.documento"
+        />
+        <button
+          class="btn btn-outline-danger"
+          id="button-addon2"
+          (click)="documento1.value = ''"
+        >
+        🧹
+        </button>
+      </div>
     </div>
     <div class="buscador">
       <label for="">Activo:</label>
-      <input type="text" #limpiar5 class="form-control" [(ngModel)]="filtro.activo">
+      <input
+      class="form-check-input"
+        type="checkbox"
+        [(ngModel)]="filtro.activo"
+      />
     </div>
     <div class="botonera">
-      <button class="btn btn-outline-primary boton" (click)="clientesrv.set_filtro(filtro);clientesrv.filtrar()">Buscar...🔍</button>
-      <button class="btn btn-outline-success boton" (click)="limpiar1.value='';limpiar2.value='';limpiar3.value='';limpiar4.value='';limpiar5.value='';">Limpiar...🧹</button>
+      <button
+        class="btn btn-outline-primary boton"
+        (click)="clientesrv.set_filtro(filtro); clientesrv.filtrar()"
+      >
+        Buscar...🔍
+      </button>
     </div>
   </div>
 </div>

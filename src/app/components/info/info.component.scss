@@ -4,7 +4,7 @@
   overflow-y: hidden;
   display: grid;
   gap: 0.5rem;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2.5fr 1fr;
 }
 .mostrar{
   background-color: white;
@@ -33,11 +33,7 @@
   flex-direction:column;
   border-radius: 5px;
   overflow-y: hidden;
-  .paginacion{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+  
   .contenedor_para_flex_tabla{
     overflow-y: auto;
     height: 100%;
@@ -69,11 +65,16 @@
     background-color: antiquewhite;
   }
 }
+.paginacion{
+  display: flex;
+  justify-content: flex-end;
+}
 .contenedor_info {
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   overflow-y: hidden;
+  overflow-x: hidden;
   display: grid;
   height: 100%;
   grid-template-rows:4fr 1fr ;
@@ -81,7 +82,7 @@
   .contenedor-datos{
     height: 100%;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     &::-webkit-scrollbar {
       width: 10px;
     }
@@ -97,6 +98,7 @@
   .contenedor-botonera{
     height: 100%;
     overflow-y: hidden;
+    overflow-x: hidden;
   }
   .titulo {
     text-align: center;
