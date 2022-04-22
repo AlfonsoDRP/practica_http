@@ -74,18 +74,34 @@
     </div>
     <div class="buscador">
       <label for="">Activo:</label>
-      <input
+      <div class="contenedor_activo">
+        <input
       class="form-check-input"
         type="checkbox"
         [(ngModel)]="filtro.activo"
       />
+      <button
+          class="btn btn-outline-danger"
+          id="button-addon2"
+          (click)="filtro.activo = '';"
+        >
+        🧹
+        </button>
+      </div>
+      
     </div>
     <div class="botonera">
       <button
-        class="btn btn-outline-primary boton"
+        class="btn btn-outline-primary"
         (click)="clientesrv.set_filtro(filtro); clientesrv.filtrar()"
       >
         Buscar...🔍
+      </button>
+      <button
+        class="btn btn-outline-primary"
+        (click)="filtro.codigo = '';filtro.activo = '';filtro.documento = '';filtro.provincia = '';filtro.alias = ''"
+      >
+        Limpiar filtro
       </button>
     </div>
   </div>
