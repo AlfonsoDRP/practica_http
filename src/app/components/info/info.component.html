@@ -255,38 +255,33 @@
       </div>
       <div class="seccion">
         <div
-          class="etiqueta"
+          class="etiqueta activo"
           *ngIf="clienteSrv.cliente_sele.activo == '0'; else distinto"
         >
-          <label for="">Activo</label>
+          <label for="">Activo:</label>
           <input
             [(ngModel)]="clienteSrv.cliente_a_mod.activo"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
             }"
-            class="activo"
             type="checkbox"
           />
         </div>
         <ng-template #distinto>
-          <div class="etiqueta">
-            <label for="">Activo</label>
+          <div class="etiqueta activo">
+            <label for="">Activo:</label>
             <input
               [(ngModel)]="clienteSrv.cliente_a_mod.activo"
               [ngClass]="{
                 mostrar: clienteSrv.bandera,
                 modificar: !clienteSrv.bandera
               }"
-              class="activo"
               type="checkbox"
               checked
             /></div
         ></ng-template>
       </div>
-
-      <div class="seccion"></div>
-
       <div class="seccion">
         <div class="etiqueta">
           <label for="">Anotaciones:</label>
@@ -302,45 +297,28 @@
             placeholder="Sin anotacion"
           ></textarea>
         </div>
-        
-      </div>
-      <div class="etiqueta-limpiar">
-        <button
-        class="btn btn-outline-warning boton_limpiar"
-        (click)="resetSele()"
-      >
-      🧹
-      </button>
       </div>
     </div>
     <div class="contenedor-botonera">
       <div class="botonera">
-        <button
-          class="btn btn-outline-success boton"
-          (click)="crear()"
-        >
+        <button class="btn btn-success boton" (click)="crear()">
           Crear...👤
         </button>
         <div class="subdiv">
-
           <button
-          class="btn btn-outline-info boton"
-          (click)="clienteSrv.cambiarbandera()"
-        >
-          Editar...✍🏻
-        </button>
-          <button
-          class="btn btn-outline-info boton"
-          (click)="modificar();"
-        >
-          Modificar...🖌
-        </button>
+            class="btn btn-warning boton"
+            (click)="clienteSrv.cambiarbandera()"
+          >
+            Editar...✍🏻
+          </button>
+          <button class="btn btn-warning boton" (click)="resetSele()">
+            Limpiar...🧹
+          </button>
+          <button class="btn btn-warning boton" (click)="modificar()">
+            Modificar...🖌
+          </button>
         </div>
-        
-        <button
-          class="btn btn-outline-danger boton"
-          (click)="borrar()"
-        >
+        <button class="btn btn-danger boton" (click)="borrar()">
           Borrar...🗑
         </button>
       </div>

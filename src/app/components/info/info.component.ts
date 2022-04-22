@@ -43,6 +43,7 @@ export class InfoComponent implements OnInit {
 
   set_cliente_sele(index: any) {
     this.clienteSrv.cliente_sele = index;
+    this.clienteSrv.cliente_a_mod = this.clienteSrv.cliente_sele;
     console.log(index);
   }
   resetSele(){
@@ -56,10 +57,9 @@ export class InfoComponent implements OnInit {
   }
 
   modificar() {
-    // let id = this.clienteSrv.cliente_sele.idcliente;
-    // this.clienteSrv.modificarCliente(id).subscribe(
-    //   (data) => {data}
-    // )
+    this.clienteSrv.modificarCliente().subscribe(
+      data => console.log(data) 
+     )
   }
   borrar() {
     let id = this.clienteSrv.cliente_sele.idcliente;

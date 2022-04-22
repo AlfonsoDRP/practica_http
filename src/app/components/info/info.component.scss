@@ -133,6 +133,11 @@
     display: flex;
     flex-direction: row;
   }
+  .activo{
+    display: flex;
+    flex-direction:row ;
+    align-items: center;
+  }
   .id_cliente{
     width: 25%;
   }

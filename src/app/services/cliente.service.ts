@@ -11,7 +11,7 @@ export class ClienteService {
   clientes: any = {};
   clientes_a_mostrar: any[] = [];
   cliente_sele: any = [];
-
+  
   filtro = {
     alias: '',
     activo: '',
@@ -97,14 +97,25 @@ export class ClienteService {
     );
   }
 
-  modificarCliente(id1: any):Observable<any> {
+  modificarCliente():Observable<any> {
     const parametros = {
-      id: id1,
+      idcliente :this.cliente_a_mod.idcliente,
+      activo: this.cliente_a_mod.activo,
+      numero: this.cliente_a_mod.numero,
+      alias: this.cliente_a_mod.alias,
+      razon_social: this.cliente_a_mod.razon_social,
+      direccion: this.cliente_a_mod.direccion,
+      poblacion: this.cliente_a_mod.poblacion,
+      provincia: this.cliente_a_mod.provincia,
+      telefono: this.cliente_a_mod.telefono,
+      comercial: this.cliente_a_mod.comercial,
+      documento: this.cliente_a_mod.documento,
+      email: this.cliente_a_mod.email,
+      notas: this.cliente_a_mod.notas
     };
 
     return this.http.put<any>(
-      'https://www.azurglobal.es/apiPracticas/clientes/',
-      { headers: this.cabecera, params: parametros }
+      'https://www.azurglobal.es/apiPracticas/clientes/', parametros, {headers:this.cabecera}
     );
   }
 
