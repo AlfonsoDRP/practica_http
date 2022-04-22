@@ -50,12 +50,17 @@ export class InfoComponent implements OnInit {
     this.clienteSrv.cambiarbandera();
   }
   crear() {
-    this.clienteSrv.clientes.push(this.clienteSrv.cliente_a_mod);
+    this.clienteSrv.crearCliente().subscribe(
+     data => console.log(data) 
+    )
   }
 
   modificar() {
+    // let id = this.clienteSrv.cliente_sele.idcliente;
+    // this.clienteSrv.modificarCliente(id).subscribe(
+    //   (data) => {data}
+    // )
   }
-
   borrar() {
     let id = this.clienteSrv.cliente_sele.idcliente;
     this.clienteSrv.deleteCliente(id).subscribe(

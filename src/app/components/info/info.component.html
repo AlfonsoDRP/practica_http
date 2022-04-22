@@ -118,7 +118,7 @@
             placeholder="Sin provincia"
           />
         </div>
-        <div class="etiqueta">
+        <div class="etiqueta poblacion">
           <label for="">Poblacion:</label>
           <input
             [(ngModel)]="clienteSrv.cliente_a_mod.poblacion"
@@ -127,9 +127,24 @@
               modificar: !clienteSrv.bandera
             }"
             [disabled]="clienteSrv.bandera"
-            class="form-control poblacion"
+            class="form-control"
             type="text"
             value="{{ clienteSrv.cliente_sele.poblacion }}"
+            placeholder="Sin poblacion"
+          />
+        </div>
+        <div class="etiqueta cp">
+          <label for="">Codigo postal:</label>
+          <input
+            [(ngModel)]="clienteSrv.cliente_a_mod.cp"
+            [ngClass]="{
+              mostrar: clienteSrv.bandera,
+              modificar: !clienteSrv.bandera
+            }"
+            [disabled]="clienteSrv.bandera"
+            class="form-control"
+            type="text"
+            value="{{ clienteSrv.cliente_sele.cp }}"
             placeholder="Sin poblacion"
           />
         </div>
@@ -241,7 +256,7 @@
       <div class="seccion">
         <div
           class="etiqueta"
-          *ngIf="clienteSrv.cliente_sele.activo == 0; else distinto"
+          *ngIf="clienteSrv.cliente_sele.activo == '0'; else distinto"
         >
           <label for="">Activo</label>
           <input
@@ -252,15 +267,13 @@
             }"
             class="activo"
             type="checkbox"
-            value="{{ clienteSrv.cliente_sele.activo }}"
-            placeholder="Sin razon social"
           />
         </div>
         <ng-template #distinto>
           <div class="etiqueta">
             <label for="">Activo</label>
             <input
-              [(ngModel)]="clienteSrv.cliente_a_mod.notas"
+              [(ngModel)]="clienteSrv.cliente_a_mod.activo"
               [ngClass]="{
                 mostrar: clienteSrv.bandera,
                 modificar: !clienteSrv.bandera
@@ -304,16 +317,26 @@
       <div class="botonera">
         <button
           class="btn btn-outline-success boton"
-          (click)="crear();clienteSrv.cambiarbandera()"
+          (click)="crear()"
         >
           Crear...👤
         </button>
-        <button
+        <div class="subdiv">
+
+          <button
           class="btn btn-outline-info boton"
-          (click)="clienteSrv.cambiarbandera();modificar();"
+          (click)="clienteSrv.cambiarbandera()"
+        >
+          Editar...✍🏻
+        </button>
+          <button
+          class="btn btn-outline-info boton"
+          (click)="modificar();"
         >
           Modificar...🖌
         </button>
+        </div>
+        
         <button
           class="btn btn-outline-danger boton"
           (click)="borrar()"

@@ -127,6 +127,12 @@
     
     
   }
+  .subdiv{
+    width: 100%;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+  }
   .id_cliente{
     width: 25%;
   }
@@ -134,14 +140,18 @@
     width: 30%;
   }
   .alias{
-    width: 45%;
+    width: 100%;
   }
   .provincia{
-    width: 32%;
+    width: 30%;
   }
-  .cod_postal{
+  .poblacion{
     width: 40%;
   }
+  .cp{
+    width: 30%;
+  }
+  
   .telefono{
     width: 42%;
   }

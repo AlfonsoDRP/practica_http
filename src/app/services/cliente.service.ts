@@ -34,6 +34,7 @@ export class ClienteService {
     email: '',
     activo: false,
     notas: '',
+    cp: ''
   };
 
   fecha: Date = new Date(Date.now());
@@ -71,16 +72,51 @@ export class ClienteService {
     );
   }
 
-  deleteCliente(id1: any): Observable<any>{
+  crearCliente():Observable<any> {
     const parametros = {
-      id : id1
+      activo: this.cliente_a_mod.activo,
+      numero: this.cliente_a_mod.numero,
+      alias: this.cliente_a_mod.alias,
+      razon_social: this.cliente_a_mod.razon_social,
+      direccion: this.cliente_a_mod.direccion,
+      poblacion: this.cliente_a_mod.poblacion,
+      provincia: this.cliente_a_mod.provincia,
+      telefono: this.cliente_a_mod.telefono,
+      comercial: this.cliente_a_mod.comercial,
+      documento: this.cliente_a_mod.documento,
+      email: this.cliente_a_mod.email,
+      notas: this.cliente_a_mod.notas
+    };
+    if(parametros.telefono==""){
+      parametros.telefono="0";
     }
-    
+    console.log(parametros);
+    return this.http.post<any>(
+      'https://www.azurglobal.es/apiPracticas/clientes/', parametros, {headers:this.cabecera}
+      
+    );
+  }
+
+  modificarCliente(id1: any):Observable<any> {
+    const parametros = {
+      id: id1,
+    };
+
+    return this.http.put<any>(
+      'https://www.azurglobal.es/apiPracticas/clientes/',
+      { headers: this.cabecera, params: parametros }
+    );
+  }
+
+  deleteCliente(id1: any): Observable<any> {
+    const parametros = {
+      id: id1,
+    };
+
     return this.http.delete<any>(
       'https://www.azurglobal.es/apiPracticas/clientes/',
-      { headers: this.cabecera, params: parametros}
+      { headers: this.cabecera, params: parametros }
     );
-
   }
 
   set_clientes(clientes: any) {
@@ -102,6 +138,4 @@ export class ClienteService {
       this.cliente_sele = this.clientes_a_mostrar[0];
     });
   }
-
-
 }
