@@ -6,13 +6,16 @@
   gap: 0.5rem;
   grid-template-columns: 2.5fr 1fr;
 }
+
 .mostrar{
   background-color: white;
 }
+
 .modificar{
   background-color: white;
-  border-color: yellow;
+  border-color: rgb(58, 255, 68);
 }
+
 .botonera{
   overflow-y: auto;
   display: flex;
@@ -26,6 +29,7 @@
       width: 100%;
   }
 }
+
 .etiqueta-limpiar{
   display: flex;
   height: 50px;
@@ -33,6 +37,7 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
 .boton_limpiar{
   width: 160px;
 }
@@ -75,10 +80,12 @@
     background-color: antiquewhite;
   }
 }
+
 .paginacion{
   display: flex;
   justify-content: flex-end;
 }
+
 .contenedor_info {
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
@@ -89,44 +96,69 @@
   height: 100%;
   grid-template-rows:7fr 2fr ;
   gap: 0.5rem;
+
   .contenedor-datos{
     height: 100%;
-    overflow-y: auto;
-    overflow-x: auto;
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    &::-webkit-scrollbar-track {
-      background: #cccccc;
-      border-radius: 5px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #858585;
-      border-radius: 5px;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    .contenedor-secciones{
+      overflow-y: auto;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #cccccc;
+        border-radius: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #858585;
+        border-radius: 5px;
+      }
     }
   }
+
   .contenedor-botonera{
     height: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
   }
+
   .titulo {
     text-align: center;
   }
+
   .seccion {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
     width: 100%;
   }
+
   .etiqueta{
     width: 100%;
     display: flex;
     gap: 0.5rem;
-    flex-direction: column;
-    
-    
+    flex-direction: column; 
   }
+
+  .contenedor-arriba{
+    padding: 0.5rem;
+    height: 100%;
+    width: 100%;
+    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    .boton-limpiar{
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+  }
+
   .subdiv{
     width: 100%;
     gap: 0.5rem;

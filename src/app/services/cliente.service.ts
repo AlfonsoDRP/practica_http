@@ -8,7 +8,7 @@ export class ClienteService {
   private url: string = 'https://www.azurglobal.es/apiPracticas/clientes/';
   private cabecera: any = {};
   bandera: boolean = true;
-  clientes: any = {};
+  clientes: any = [];
   clientes_a_mostrar: any[] = [];
   cliente_sele: any = [];
   
@@ -20,22 +20,6 @@ export class ClienteService {
     codigo: '',
   };
 
-  cliente_a_mod = {
-    idcliente: '',
-    numero: '',
-    alias: '',
-    provincia: '',
-    poblacion: '',
-    direccion: '',
-    comercial: '',
-    documento: '',
-    razon_social: '',
-    telefono: '',
-    email: '',
-    activo: false,
-    notas: '',
-    cp: ''
-  };
 
   fecha: Date = new Date(Date.now());
   nombre = 'ALFONSO';
@@ -72,23 +56,9 @@ export class ClienteService {
     );
   }
 
-  crearCliente():Observable<any> {
-    const parametros = {
-      activo: this.cliente_a_mod.activo,
-      numero: this.cliente_a_mod.numero,
-      alias: this.cliente_a_mod.alias,
-      razon_social: this.cliente_a_mod.razon_social,
-      direccion: this.cliente_a_mod.direccion,
-      poblacion: this.cliente_a_mod.poblacion,
-      provincia: this.cliente_a_mod.provincia,
-      telefono: this.cliente_a_mod.telefono,
-      comercial: this.cliente_a_mod.comercial,
-      documento: this.cliente_a_mod.documento,
-      email: this.cliente_a_mod.email,
-      notas: this.cliente_a_mod.notas
-    };
-    if(parametros.telefono==""){
-      parametros.telefono="0";
+  crearCliente(parametros:any):Observable<any> {
+    if(parametros.telefono==null){
+      parametros.telefono=0;
     }
     console.log(parametros);
     return this.http.post<any>(
@@ -97,23 +67,7 @@ export class ClienteService {
     );
   }
 
-  modificarCliente():Observable<any> {
-    const parametros = {
-      idcliente :this.cliente_a_mod.idcliente,
-      activo: this.cliente_a_mod.activo,
-      numero: this.cliente_a_mod.numero,
-      alias: this.cliente_a_mod.alias,
-      razon_social: this.cliente_a_mod.razon_social,
-      direccion: this.cliente_a_mod.direccion,
-      poblacion: this.cliente_a_mod.poblacion,
-      provincia: this.cliente_a_mod.provincia,
-      telefono: this.cliente_a_mod.telefono,
-      comercial: this.cliente_a_mod.comercial,
-      documento: this.cliente_a_mod.documento,
-      email: this.cliente_a_mod.email,
-      notas: this.cliente_a_mod.notas
-    };
-
+  modificarCliente(parametros:any):Observable<any> {
     return this.http.put<any>(
       'https://www.azurglobal.es/apiPracticas/clientes/', parametros, {headers:this.cabecera}
     );
@@ -133,12 +87,13 @@ export class ClienteService {
   set_clientes(clientes: any) {
     this.clientes = clientes;
     this.clientes_a_mostrar = this.clientes;
+    this.ordenaclientes();
     console.log('clientes en srv: ', this.clientes);
   }
 
   ordenaclientes() {
     this.clientes_a_mostrar.sort(function (a, b) {
-      return a.idcliente - b.idcliente;
+      return a.numero - b.numero;
     });
   }
 

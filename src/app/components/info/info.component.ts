@@ -14,6 +14,23 @@ export class InfoComponent implements OnInit {
   rotate = true;
   currentpage = 1;
 
+  parametros:any = { 
+    idcliente: this.clienteSrv.cliente_sele.idcliente,
+    numero: this.clienteSrv.cliente_sele.numero,
+    alias: this.clienteSrv.cliente_sele.alias,
+    provincia: this.clienteSrv.cliente_sele.provincia,
+    poblacion: this.clienteSrv.cliente_sele.poblacion,
+    direccion: this.clienteSrv.cliente_sele.direccion,
+    comercial: this.clienteSrv.cliente_sele.comercial,
+    documento: this.clienteSrv.cliente_sele.documento,
+    razon_social: this.clienteSrv.cliente_sele.razon_social,
+    telefono: this.clienteSrv.cliente_sele.telefono,
+    email: this.clienteSrv.cliente_sele.email,
+    activo: this.clienteSrv.cliente_sele.activo,
+    notas: this.clienteSrv.cliente_sele.notas,
+    codigo_postal: this.clienteSrv.cliente_sele.cp
+  };
+  
   constructor(public clienteSrv: ClienteService) {
     clienteSrv.getCliente({}).subscribe(
       (data) => {
@@ -27,6 +44,25 @@ export class InfoComponent implements OnInit {
         alert('Los datos no han podido cargarse');
       }
     );
+  }
+
+  resetParams(){
+    this.parametros = {
+      idcliente: undefined,
+      numero: undefined,
+      alias: undefined,
+      provincia: undefined,
+      poblacion: undefined,
+      direccion: undefined,
+      comercial: undefined,
+      documento: undefined,
+      razon_social: undefined,
+      telefono: undefined,
+      email: undefined,
+      activo: undefined,
+      notas: undefined,
+      codigo_postal: undefined
+    };
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -43,24 +79,29 @@ export class InfoComponent implements OnInit {
 
   set_cliente_sele(index: any) {
     this.clienteSrv.cliente_sele = index;
-    this.clienteSrv.cliente_a_mod = this.clienteSrv.cliente_sele;
-    console.log(index);
+    console.log(this.clienteSrv.cliente_sele);
   }
+
   resetSele(){
     this.clienteSrv.cliente_sele={};
-    this.clienteSrv.cambiarbandera();
   }
+
   crear() {
-    this.clienteSrv.crearCliente().subscribe(
+    this.clienteSrv.crearCliente(this.parametros).subscribe(
      data => console.log(data) 
     )
+    this.clienteSrv.filtrar();
   }
 
   modificar() {
-    this.clienteSrv.modificarCliente().subscribe(
-      data => console.log(data) 
-     )
+    console.log(this.parametros);
+    this.parametros.idcliente = this.clienteSrv.cliente_sele.idcliente;
+    this.clienteSrv.modificarCliente(this.parametros).subscribe(
+      data => console.log(data),
+    )
+    this.clienteSrv.filtrar();
   }
+
   borrar() {
     let id = this.clienteSrv.cliente_sele.idcliente;
     this.clienteSrv.deleteCliente(id).subscribe(
@@ -68,5 +109,6 @@ export class InfoComponent implements OnInit {
       (error) => {console.log("error",error)});
     this.clienteSrv.filtrar();
   }
+
   ngOnInit(): void {}
 }

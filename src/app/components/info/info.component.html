@@ -22,7 +22,7 @@
           >
             <td class="idcliente">{{ item.idcliente }}</td>
             <td class="numero">{{ item.numero }}</td>
-            <td class="nombre">{{ item.nombre }}</td>
+            <td class="nombre">{{ item.razon_social }}</td>
             <td class="direccion">{{ item.direccion }}</td>
             <td class="telefono">{{ item.telefono }}</td>
             <td class="comercial">{{ item.comercial }}</td>
@@ -49,16 +49,33 @@
   </div>
 
   <div class="contenedor_info">
+
     <div class="contenedor-datos">
-      <div class="titulo">
-        <h5>DATOS DEL CLIENTE</h5>
+
+      <div class="contenedor-arriba">
+
+        <div class="custom-control custom-switch edicion">
+          <label class="custom-control-label" for="customSwitch1">Modo edicion</label>
+          <input type="checkbox" class="custom-control-input" id="customSwitch1" (click)="clienteSrv.cambiarbandera()">
+        </div>
+
+        <div class="titulo">
+          <h5>DATOS DEL CLIENTE</h5>
+        </div>
+
+        <div class="boton-limpiar">
+          <button type="button" class="btn btn-outline-warning btn-sm " (click)="resetSele()">Limpiar🧹</button>
+        </div>
+
       </div>
+      
+      <div class="contenedor-secciones">
 
       <div class="seccion">
-        <div class="etiqueta id_cliente">
+        <!-- <div class="etiqueta id_cliente">
           <label for="">Id_cliente:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.idcliente"
+            [(ngModel)]="parametros.idcliente"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -69,11 +86,11 @@
             value="{{ clienteSrv.cliente_sele.idcliente }}"
             placeholder="Sin id_cliente"
           />
-        </div>
+        </div> -->
         <div class="etiqueta numero">
           <label for="">Numero:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.numero"
+            [(ngModel)]="parametros.numero"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -88,7 +105,7 @@
         <div class="etiqueta alias">
           <label for="">Alias:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.alias"
+            [(ngModel)]="parametros.alias"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -106,7 +123,7 @@
         <div class="etiqueta provincia">
           <label for="">Provincia:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.provincia"
+            [(ngModel)]="parametros.provincia"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -121,7 +138,7 @@
         <div class="etiqueta poblacion">
           <label for="">Poblacion:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.poblacion"
+            [(ngModel)]="parametros.poblacion"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -136,7 +153,7 @@
         <div class="etiqueta cp">
           <label for="">Codigo postal:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.cp"
+            [(ngModel)]="parametros.codigo_postal"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -154,7 +171,7 @@
         <div class="etiqueta direccion">
           <label for="">Direccion:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.direccion"
+            [(ngModel)]="parametros.direccion"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -172,7 +189,7 @@
         <div class="etiqueta">
           <label for="">Comercial:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.comercial"
+            [(ngModel)]="parametros.comercial"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -187,7 +204,7 @@
         <div class="etiqueta">
           <label for="">Documento:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.documento"
+            [(ngModel)]="parametros.documento"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -201,13 +218,11 @@
         </div>
       </div>
 
-      <div class="seccion"></div>
-
       <div class="seccion">
         <div class="etiqueta">
           <label for="">Razon social:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.razon_social"
+            [(ngModel)]="parametros.razon_social"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -225,7 +240,7 @@
         <div class="etiqueta telefono">
           <label for="">Telefono:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.telefono"
+            [(ngModel)]="parametros.telefono"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -240,7 +255,7 @@
         <div class="etiqueta">
           <label for="">E-mail:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.email"
+            [(ngModel)]="parametros.email"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -253,6 +268,7 @@
           />
         </div>
       </div>
+
       <div class="seccion">
         <div
           class="etiqueta activo"
@@ -260,7 +276,7 @@
         >
           <label for="">Activo:</label>
           <input
-            [(ngModel)]="clienteSrv.cliente_a_mod.activo"
+            [(ngModel)]="parametros.activo"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -272,21 +288,21 @@
           <div class="etiqueta activo">
             <label for="">Activo:</label>
             <input
-              [(ngModel)]="clienteSrv.cliente_a_mod.activo"
+              [(ngModel)]="parametros.activo"
               [ngClass]="{
                 mostrar: clienteSrv.bandera,
                 modificar: !clienteSrv.bandera
               }"
               type="checkbox"
-              checked
             /></div
         ></ng-template>
       </div>
+
       <div class="seccion">
         <div class="etiqueta">
           <label for="">Anotaciones:</label>
           <textarea
-            [(ngModel)]="clienteSrv.cliente_a_mod.notas"
+            [(ngModel)]="parametros.notas"
             [ngClass]="{
               mostrar: clienteSrv.bandera,
               modificar: !clienteSrv.bandera
@@ -298,28 +314,23 @@
           ></textarea>
         </div>
       </div>
+
     </div>
+
+    </div>
+
     <div class="contenedor-botonera">
       <div class="botonera">
         <button class="btn btn-success boton" (click)="crear()">
-          Crear...👤
+          Crear👤
         </button>
         <div class="subdiv">
-          <button
-            class="btn btn-warning boton"
-            (click)="clienteSrv.cambiarbandera()"
-          >
-            Editar...✍🏻
-          </button>
-          <button class="btn btn-warning boton" (click)="resetSele()">
-            Limpiar...🧹
-          </button>
-          <button class="btn btn-warning boton" (click)="modificar()">
-            Modificar...🖌
+          <button class="btn btn-warning boton" (click)="modificar();resetParams()">
+            Modificar🖌
           </button>
         </div>
         <button class="btn btn-danger boton" (click)="borrar()">
-          Borrar...🗑
+          Borrar🗑
         </button>
       </div>
     </div>
